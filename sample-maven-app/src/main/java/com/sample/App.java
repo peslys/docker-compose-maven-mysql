@@ -5,36 +5,21 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class App {
-    /**
-     * Says hello to the world.
-     * 
-     * @param args The arguments of the program.
-     */
-    public static void main(String[] args) throws InterruptedException  {
+
+    public static void main(String[] args) throws Exception  {
         System.out.println("-------- MySQL JDBC Connection Testing ------------");
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("MySQL JDBC Driver not found");
-            e.printStackTrace();
-            return;
-        }
-
+        Class.forName("com.mysql.cj.jdbc.Driver");
         System.out.println("MySQL JDBC Driver Registered!");
         Connection connection = null;
-
-        Thread.sleep(30000);
-
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://mysql:3306/mysql", "root", "root");
-
-        } catch (SQLException e) {
-            System.out.println("Connection Failed! Check output console");
-            e.printStackTrace();
-            return;
+        while(connection == null) {
+            try {
+                connection = DriverManager.getConnection(
+                    "jdbc:mysql://mysql:3306/mysql", "root", "root");
+            } catch (SQLException e) {
+                System.out.println("Can't establish SQL connection yet.");
+                Thread.sleep(500);
+            }
         }
-
         if (connection != null) {
             System.out.println("You are now successfully connected to SQL database!");
         } else {

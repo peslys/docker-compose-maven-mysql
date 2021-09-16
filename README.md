@@ -14,5 +14,5 @@ Dockerfile description:
 ## docker-compose.yml
 Docker compose file defines MySQL and sample-maven-app services. Following are the commands to use docker-compose:
 * `docker-compose build` builds/rebuilds images for mysql and sample-maven-app
-* `docker-compose up -d` to bring up application. Docker compose creates a network which can be used by containers to communicate with each other.
+* `docker-compose up` to bring up application. Docker compose creates a network which can be used by containers to communicate with each other.
 * `docker-compose down` to bring down the app
